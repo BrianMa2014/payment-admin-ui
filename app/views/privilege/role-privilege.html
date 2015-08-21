@@ -1,0 +1,68 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">  角色权限</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+               角色查询
+                <input type="text" id="query" name="query" class="form-control" placeholder="请输入角色名称" ng-model='query' >
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div class="dataTable_wrapper">
+                    <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                        <thead>
+                        <tr>
+                            <th>角色编号</th>
+                            <th>角色名称</th>
+                            <th>角色字段1</th>
+                            <th>角色字段2</th>
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                <tr ng-repeat="role in roles | filter:query">
+                    <td>{{role.roleid}}</td>
+                    <td>{{role.rolename}}</td>
+                    <td>角色字段1</td>
+                    <td>角色字段2</td>
+                    <td><a href="">修改权限</a></td>
+                </tr>
+                </tbody>
+                    </table>
+                </div>
+                <!-- /.table-responsive -->
+                <nav>
+                    <ul class="pagination">
+                        <li>
+                            <a href="#" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li>
+                            <a href="#" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+
+
+</div>

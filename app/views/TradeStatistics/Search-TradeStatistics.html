@@ -1,0 +1,126 @@
+<!-- /.row -->
+<div class="row">
+    <div class="col-lg-12">
+
+        <div class="panel panel-info" style="overflow-x:auto">
+
+            <!-- /.panel-heading -->
+            <div class="panel-heading" style="margin-bottom:10px;margin-top:15px">
+                银泰支付平台交易统计查询报表
+            </div>
+            <div class="form-inline" ng-controller="tradeStatisticsController">
+                <div class="form-group" style="margin-left:10px">
+                    <label for="tenantId">商户ID</label>
+                    <input type="text" class="form-control" id="tenantId" placeholder="商户ID" ng-model="query.tenantId">
+                </div>
+                <div class="form-group" style="margin-left:10px">
+                    <label for="tradeID">交易单号</label>
+                    <input type="text" class="form-control" id="tradeID" placeholder="交易单号" ng-model="query.tradeTD">
+                </div>
+
+
+                <div class="input-group">
+                    <span><label for="">交易时间</label></span>
+
+                    <div class="input-group date form_date " data-date="" data-date-format="yyyy-mm-dd "
+                         data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+
+                        <input name=""  size='10' type="text" class="form-control" placeholder="起始日期" ng-model="query.tradeTime"/>
+            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar">
+            </span></span>
+                    </div>
+
+                    <script>
+
+                        $('.form_date').datetimepicker({
+                            language: 'zh-CN',
+                            weekStart: 1,
+                            todayBtn: 1,
+                            autoclose: 1,
+                            todayHighlight: 1,
+                            startView: 2,
+                            minView: 2,
+                            forceParse: 0
+                        });
+
+                    </script>
+
+                </div>
+
+                <div class="form-group">
+                    <button  ng-click="search(query)" class="btn btn-primary"><span class="fa fa-search"></span>搜索</button>
+                </div>
+                </form>
+
+
+                <div class="panel-body">
+                    <div class="dataTable_wrapper">
+                        <table class="table table-striped table-bordered table-hover" id="dataTables-example">
+                            <thead>
+                            <tr>
+
+                                <th style="min-width:80px;">商户ID</th>
+                                <th style="min-width:80px;">商户名称</th>
+                                <th style="min-width:80px;">平台业务流水号</th>
+                                <th style="min-width:80px;">支付交易流水号</th>
+                                <th style="min-width:80px;">商户订单</th>
+                                <th style="min-width:100px;">交易时间</th>
+                                <th style="min-width:80px;">收入金额</th>
+                                <th style="min-width:80px;">支出金额</th>
+                                <th style="min-width:80px;">交易渠道</th>
+                                <th style="min-width:80px;">业务类型</th>
+                                <th style="min-width:80px;">费率</th>
+                                <th style="min-width:80px;">备注</th>
+                                <th style="min-width:80px;">支付场景</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="trade in trades | filter:queryId | filter:queryName">
+                                <td>{{trade.tenantID}}</td>
+                                <td>{{trade.tenantName}}</td>
+                                <td>{{trade.bussID}}</td>
+                                <td>{{trade.tradeID}}</td>
+                                <td>{{trade.OrderID}}</td>
+                                <td>{{trade.tradeTime}}</td>
+                                <td>{{trade.income}}</td>
+                                <td>{{trade.pay}}</td>
+                                <td>{{trade.channel}}</td>
+                                <td>{{trade.bussType}}</td>
+                                <td>{{trade.rate}}</td>
+                                <td>{{trade.node}}</td>
+                                <td>{{trade.scene}}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.table-responsive -->
+                    <nav style="text-align:center;">
+                        <ul class="pagination">
+                            <li>
+                                <a href="#" aria-label="Previous">
+                                    <span aria-hidden="true">&laquo;</span>
+                                </a>
+                            </li>
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li>
+                                <a href="#" aria-label="Next">
+                                    <span aria-hidden="true">&raquo;</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+
+
+</div>
