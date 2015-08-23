@@ -11,9 +11,10 @@ angular
   .module('sbAdminApp', [
     'oc.lazyLoad',
     'ui.router',
-    'ui.bootstrap'
-     //'ngRoute',
-     //'ngResource'
+    'ui.bootstrap',
+    // 'sbAdminApp.utils.service',
+    'sbAdminApp.tenants.service'
+
   ])
     .directive('header',function(){
         return {
@@ -118,8 +119,24 @@ angular
         //用户管理模块-修改
         .state('dashboard.modify-tenant',{
             templateUrl:'views/tenant/modify-tenant.html',
-            url:'/tenant/modify/',
-            controller:'tenantController',
+            url:'/tenant/modify/{tenantId}',
+            // controller:'tenantController',
+            controller: ['$scope', '$stateParams','tenantsService', 
+                function (  $scope,   $stateParams, tenantsService) {
+              
+                 var tenant = tenantsService.get($stateParams.tenantId);
+                 alert("地址"+tenant.address);
+                 // alert("success"+data);
+                 // alert($scope.tenant.tenantId)；
+                    // tenantsService.get(11);
+                  // $scope.tenant = {
+                  //   "address":"1111xxx",
+                  //   "signingDate":"2015-01-01",
+                  //   "tenantName":"mexxx",
+                  //   "contact":"王霞"
+              
+                  // };
+                }] ,
             resolve: {
                 loadMyFile:function($ocLazyLoad) {
                     return $ocLazyLoad.load({

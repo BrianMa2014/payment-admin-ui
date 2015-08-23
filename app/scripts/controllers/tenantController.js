@@ -11,15 +11,37 @@ angular.module('sbAdminApp')
             return tenant;
         }
     })
-    .controller('tenantController', ['$scope', '$http', '$state','tenantService', function ($scope, $http, $state, tenantService) {
+    .controller('tenantController', ['$scope', '$http', '$state', function ($scope, $http, $state) {
 
         $http.get('json/tenants.json').success(function (data) {
             $scope.tenants = data;
         });
 
         $scope.createTenant = function (tenant) {
-            alert(tenant.tenantname);
-        }
+
+            $http({
+               method:"POST",
+               url:"http://localhost:8080/SpringMVC/tenant/save",
+               data:{
+                   "tenantName":tenant.tenantName,
+                   "signingDate":tenant.signingDate,
+                   "contact":tenant.contact,
+                   "address":tenant.address
+                     }
+            }).success(function(data){
+                console.log(data);
+                if(Boolean(data) == true){
+                   alert("成功");  
+                   $state.go("dashboard.search-tenant");  
+                }
+                else{
+                   alert("失败"); 
+                }
+            }).error(function() {
+                    alert("fail...");
+                });
+    }
+
 
         $scope.search = function (query) {
 
