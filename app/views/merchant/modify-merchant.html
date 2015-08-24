@@ -2,22 +2,22 @@
     <div class="col-lg-12">
     <div class="panel panel-info">
     <div class="panel-heading" style="margin-bottom:20px;margin-top:15px">
-        新建租户
+        修改商户
     </div>
    <!-- /.col-lg-12 -->
 
-<div class="form" ng-submit="createTenant(tenant)" ng-controller="tenantController">
+<div class="form" ng-submit="modifyTenant(tenant)" ng-controller="tenantController">
 <form class="form-horizontal">
    <div class="form-group">
-      <label for="tenantName" class="col-sm-2 control-label">租户名称</label>
+      <label for="tenantName" class="col-sm-2 control-label">商户名称</label>
       <div class="col-sm-6">
-         <input type="text" class="form-control" id="tenantName" placeholder="租户名称" ng-model="tenant.tenantName">
+         <input type="text" class="form-control" id="tenantName" placeholder="商户名称" ng-model="tenant.tenantName">
       </div>
    </div>
    <div class="form-group">
       <label for="inputPassword3" class="col-sm-2 control-label">签约时间</label>
       <div class="col-sm-6">
-         <input type="text" class="form-control" id="signingDate" placeholder="签约时间" ng-model="tenant.signingDate">
+         <input type="text" class="form-control" id="signingDate" placeholder="签约时间" ng-model="tenant.signingDate">{{test}}
       </div>
    </div>
     <div class="form-group">
@@ -27,14 +27,15 @@
         </div>
     </div>
     <div class="form-group">
-        <label for="inputPassword3" class="col-sm-2 control-label">租户地址</label>
+        <label for="inputPassword3" class="col-sm-2 control-label">商户地址</label>
         <div class="col-sm-6">
-            <input type="password" class="form-control" id="address" placeholder="租户地址" ng-model="tenant.address">
+            <input type="password" class="form-control" id="address" placeholder="商户地址" ng-model="tenant.address">
         </div>
     </div>
    <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">
-         <button type="submit" class="btn btn-primary"  ui-sref="dashboard.search-tenant">创建</button>
+         <button type="submit" class="btn btn-primary"  ui-sref="dashboard.search-tenant">修改</button>
+          {{tenantId}}
       </div>
    </div>
 </form>

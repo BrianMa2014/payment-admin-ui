@@ -1,16 +1,4 @@
 angular.module('sbAdminApp')
-    .service('tenantService', function () {
-        //$scope.tenant = {};
-        this.searchTenant = function (tenantId) {
-            var tenant = {
-                "tenantId": "1122",
-                "tenantName": "name222"
-            }
-            alert(tenant.tenantName);
-            //$scope.tenant = tenant;
-            return tenant;
-        }
-    })
     .controller('tenantController', ['$scope', '$http', '$state', function ($scope, $http, $state) {
 
         $http.get('json/tenants.json').success(function (data) {
@@ -18,30 +6,8 @@ angular.module('sbAdminApp')
         });
 
         $scope.createTenant = function (tenant) {
-
-            $http({
-               method:"POST",
-               url:"http://localhost:8080/SpringMVC/tenant/save",
-               data:{
-                   "tenantName":tenant.tenantName,
-                   "signingDate":tenant.signingDate,
-                   "contact":tenant.contact,
-                   "address":tenant.address
-                     }
-            }).success(function(data){
-                console.log(data);
-                if(Boolean(data) == true){
-                   alert("成功");  
-                   $state.go("dashboard.search-tenant");  
-                }
-                else{
-                   alert("失败"); 
-                }
-            }).error(function() {
-                    alert("fail...");
-                });
-    }
-
+            alert(tenant.tenantname);
+        }
 
         $scope.search = function (query) {
 
@@ -52,8 +18,11 @@ angular.module('sbAdminApp')
         }
 
         $scope.modifyTenant = function (tenant) {
-            $scope.tenant = tenantService.searchTenant(tenant.tenantId);
+            alert(tenant.tenantId);
+            $scope.test = "1111";
+            alert($scope.test);
             //$scope.tenant = tenant;
+            //alert($rootScope.tenant.tenantId);
             $state.go('dashboard.modify-tenant');
         }
 
@@ -61,9 +30,4 @@ angular.module('sbAdminApp')
             alert(tenant.tenantId);
 
         }
-
-    }
-
-    ])
-
-;
+    }]);
