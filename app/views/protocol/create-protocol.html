@@ -1,0 +1,167 @@
+<div class="row">
+    <div class="col-lg-12">
+    <div class="panel panel-info">
+    <div class="panel-heading" style="margin-bottom:20px;margin-top:15px">
+        添加
+        <input type="hidden" name="tenentCode" ng-model="tenantCode">
+    </div>
+   <!-- /.col-lg-12 -->
+
+<div class="form" ng-submit="createTenant(tenant)" ng-controller="protocolController">
+<form class="form-horizontal">
+    <div class="form-group">
+        <label class="col-sm-2 control-label">签约产品</label>
+        <div class="col-sm-6">
+            <select class="form-control" onchange="toggle(this)" >
+                <option value="alipay" selected="selected" ng-model="alipay.gateway">支付宝</option>
+                <option value="unionpay"  ng-model="gateway">银联</option>
+            </select>
+        </div>
+    </div>
+    <!--支付宝 -->
+    <div id="alipay">
+   <div class="form-group">
+      <label for="gatewayCode" class="col-sm-2 control-label">商户支付宝账户</label>
+      <div class="col-sm-6">
+         <input type="text" class="form-control" id="gatewayCode" placeholder="合作者身份ID" ng-model="alipay.gatewayCode">
+      </div>
+   </div>
+    <div class="form-group">
+        <label for="privateKey" class="col-sm-2 control-label">商户私钥</label>
+        <div class="col-sm-5">
+            <input type="file" class="form-control" id="privateKey" placeholder="商户私钥" ng-model="alipay.privateKey" name="file" ngf-select
+                   ngf-max-size="2MB" required>
+        </div>
+        <div class="form-inline">
+            <button class="btn btn-primary" ng-click="upload(alipay.privateKey)">上传</button>
+            <span ng-bind="alipay.privateKey.progress + '%'" ng-show="alipay.privateKey.progress >= 0"></span>
+        </div>
+        <!--<div ng-bind="privateKey.progress + '%'"></div>-->
+    </div>
+    <!--<div class="form-group">-->
+            <!--<label for="tenantName" class="col-sm-2 control-label">商户私钥密码</label>-->
+            <!--<div class="col-sm-6">-->
+                <!--<input type="text" class="form-control" id="tenantName" placeholder="商户私钥密码" ng-model="picFile" >-->
+            <!--</div>-->
+    <!--</div>-->
+    <div class="form-group">
+        <label for="gatewayPublicKey" class="col-sm-2 control-label">支付宝公钥</label>
+        <div class="col-sm-5">
+            <input type="file" class="form-control" id="gatewayPublicKey" placeholder="支付宝公钥" ng-model="alipay.gatewayPublicKey" name="file" ngf-select
+                   ngf-max-size="2MB" required>
+        </div>
+        <div class="form-inline">
+            <button class="btn btn-primary" ng-click="upload(alipay.gatewayPublicKey)">上传</button>
+            <span ng-bind="alipay.gatewayPublicKey.progress + '%'" ng-show="alipay.gatewayPublicKey.progress >= 0"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="privateKeyType" class="col-sm-2 control-label">签名类型</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" id="privateKeyType" placeholder="签名类型" value="RSA" ng-model="privateKeyType">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="secretKey" class="col-sm-2 control-label">密钥</label>
+        <div class="col-sm-5">
+            <input type="file" class="form-control" id="secretKey" placeholder="密钥" value="RSA" ng-model="alipay.secretKey"  name="file" ngf-select
+                   ngf-max-size="2MB" required>
+        </div>
+        <div class="form-inline">
+            <button class="btn btn-primary" ng-click="upload(alipay.secretKey)">上传</button>
+            <span ng-bind="alipay.secretKey.progress + '%'" ng-show="alipay.secretKey.progress >= 0"></span>
+        </div>
+    </div>
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-primary"  ui-sref="dashboard.userlist">创建</button>
+        </div>
+    </div>
+    <div id="unionpay" style="display:none">
+    <div class="form-group">
+         <label for="gatewayCode" class="col-sm-2 control-label">商户号</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" id="gatewayCode" placeholder="合作者身份ID" ng-model="unionpay.gatewayCode">
+         </div>
+   </div>
+   <div class="form-group">
+      <label for="privateKey" class="col-sm-2 control-label">商户私钥</label>
+      <div class="col-sm-5">
+         <input type="file" class="form-control" id="privateKey" placeholder="商户私钥" ng-model="unionpay.privateKey"   name="file" ngf-select
+                ngf-max-size="2MB" required>
+      </div>
+      <div class="form-inline">
+           <button class="btn btn-primary" ng-click="upload(unionpay.privateKey)">上传</button>
+           <span ng-bind="unionpay.privateKey.progress + '%'" ng-show="unionpay.privateKey.progress >= 0"></span>
+      </div>
+   </div>
+    <div class="form-group">
+        <label for="gatewayPublicKey" class="col-sm-2 control-label">网关公钥</label>
+        <div class="col-sm-5">
+            <input type="file" class="form-control" id="gatewayPublicKey" placeholder="公钥" ng-model="unionpay.gatewayPublicKey"   name="file" ngf-select
+                   ngf-max-size="2MB" required>
+        </div>
+        <div class="form-inline">
+            <button class="btn btn-primary" ng-click="upload(unionpay.gatewayPublicKey)">上传</button>
+            <span ng-bind="unionpay.gatewayPublicKey.progress + '%'" ng-show="unionpay.gatewayPublicKey.progress >= 0"></span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="privateKeyPwd" class="col-sm-2 control-label">证书密码</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" id="privateKeyPwd" placeholder="证书密码" ng-model="unionpay.privateKeyPwd">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="privateKeyType" class="col-sm-2 control-label">证书类型</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" id="privateKeyType" placeholder="证书类型" ng-model="unionpay.privateKeyType">
+        </div>
+    </div>
+   <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+         <button type="submit" class="btn btn-primary"  ui-sref="dashboard.userlist">创建</button>
+      </div>
+   </div>
+</div>
+</form>
+</div>
+</div>
+</div>
+</div>
+<!--<form name="myForm">-->
+    <!--<fieldset>-->
+        <!--<legend>Upload on form submit</legend>-->
+        <!--Username:-->
+        <!--<input type="text" name="userName" ng-model="username" size="31" required>-->
+        <!--<i ng-show="myForm.userName.$error.required">*required</i>-->
+        <!--<br>Photo:-->
+        <!--<input type="file"  ng-model="picFile" name="file" ngf-select-->
+                <!--ngf-max-size="2MB" required>-->
+        <!--<i ng-show="myForm.file.$error.required">*required</i><br>-->
+        <!--<i ng-show="myForm.file.$error.maxSize">File too large-->
+            <!--{{picFile.size / 1000000|number:1}}MB: max {{picFile.$errorParam}}</i>-->
+        <!--<img ng-show="myForm.file.$valid" ngf-src="!picFile.$error && picFile"-->
+             <!--class="thumb">-->
+        <!--<br>-->
+        <!--<button ng-click="upload(picFile)">Submit</button>-->
+      <!--<span class="progress" ng-show="picFile.progress >= 0">-->
+        <!--<div style="width:{{picFile.progress}}%"-->
+             <!--ng-bind="picFile.progress + '%'"></div>-->
+      <!--</span>-->
+        <!--<span ng-show="picFile.result">Upload Successful</span>-->
+        <!--<span class="err" ng-show="errorMsg">{{errorMsg}}</span>-->
+    <!--</fieldset>-->
+    <!--<br>-->
+<!--</form>-->
+<script>
+    function toggle(t){
+        if(t.value == "alipay"){
+        document.getElementById("alipay").style.display="block";
+        document.getElementById("unionpay").style.display="none";
+    }
+    else{
+        document.getElementById("alipay").style.display="none";
+        document.getElementById("unionpay").style.display="block";
+        }
+    }
+</script>

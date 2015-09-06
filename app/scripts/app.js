@@ -13,9 +13,34 @@ angular
     'ui.router',
     'ui.bootstrap',
     'angular-loading-bar',
+    'sbAdminApp.tenant',
+    'sbAdminApp.merchant',
+    'sbAdminApp.protocol',
+    'sbAdminApp.user'
   ])
+    //时间输入框格式过滤指令
+    .directive('dateFormat', ['$filter',function($filter) {
+        var dateFilter = $filter('date');
+        return {
+            require: 'ngModel',
+            link: function(scope, elm, attrs, ctrl) {
+
+                function formatter(value) {
+                    return dateFilter(value, 'yyyy-MM-dd'); //format
+                }
+
+                function parser() {
+                    return ctrl.$modelValue;
+                }
+
+                ctrl.$formatters.push(formatter);
+                ctrl.$parsers.unshift(parser);
+
+            }
+        };
+    }])
   .config(['$stateProvider','$urlRouterProvider','$ocLazyLoadProvider',function ($stateProvider,$urlRouterProvider,$ocLazyLoadProvider) {
-    
+
     $ocLazyLoadProvider.config({
       debug:false,
       events:true,
@@ -24,8 +49,9 @@ angular
     $urlRouterProvider.otherwise('/login');
 
     $stateProvider
+
       .state('dashboard', {
-        url:'/dashboard',
+        url:'/yt',
         templateUrl: 'views/dashboard/main.html',
         resolve: {
             loadMyDirectives:function($ocLazyLoad){
@@ -34,7 +60,7 @@ angular
                     name:'sbAdminApp',
                     files:[
                     'scripts/directives/header/header.js',
-                    'scripts/directives/header/header-notification/header-notification.js',
+                    //'scripts/directives/header/header-notification/header-notification.js',
                     'scripts/directives/sidebar/sidebar.js',
                     'scripts/directives/sidebar/sidebar-search/sidebar-search.js'
                     ]
@@ -75,25 +101,25 @@ angular
         }
     })
 
-        .state('dashboard.userlist',{
-            url:'/user',
-            controller: 'MainCtrl',
-            templateUrl:'views/user/userlist.html',
-            resolve: {
-                loadMyFiles:function($ocLazyLoad) {
-                    return $ocLazyLoad.load({
-                        name:'sbAdminApp',
-                        files:[
-                            'scripts/controllers/main.js',
-                            'scripts/directives/timeline/timeline.js',
-                            'scripts/directives/notifications/notifications.js',
-                            'scripts/directives/chat/chat.js',
-                            'scripts/directives/dashboard/stats/stats.js'
-                        ]
-                    })
-                }
-            }
-        })
+        //.state('dashboard.userlist',{
+        //    url:'/user',
+        //    controller: 'MainCtrl',
+        //    templateUrl:'views/user/userlist.html',
+        //    resolve: {
+        //        loadMyFiles:function($ocLazyLoad) {
+        //            return $ocLazyLoad.load({
+        //                name:'sbAdminApp',
+        //                files:[
+        //                    'scripts/controllers/main.js',
+        //                    'scripts/directives/timeline/timeline.js',
+        //                    'scripts/directives/notifications/notifications.js',
+        //                    'scripts/directives/chat/chat.js',
+        //                    'scripts/directives/dashboard/stats/stats.js'
+        //                ]
+        //            })
+        //        }
+        //    }
+        //})
 
         .state('dashboard.rolelist',{
             url:'/privilege',
@@ -159,116 +185,6 @@ angular
             }
     })
 
-      .state('dashboard.chart',{
-        templateUrl:'views/chart.html',
-        url:'/chart',
-        controller:'ChartCtrl',
-        resolve: {
-          loadMyFile:function($ocLazyLoad) {
-            return $ocLazyLoad.load({
-              name:'chart.js',
-              files:[
-                'bower_components/angular-chart.js/dist/angular-chart.min.js',
-                'bower_components/angular-chart.js/dist/angular-chart.css'
-              ]
-            }),
-            $ocLazyLoad.load({
-                name:'sbAdminApp',
-                files:['scripts/controllers/chartContoller.js']
-            })
-          }
-        }
-    })
-      .state('dashboard.table',{
-        templateUrl:'views/table.html',
-        url:'/table'
-    })
-        //租户管理模块-查询
-      .state('dashboard.search-tenant',{
-            templateUrl:'views/tenant/search-tenant.html',
-            url:'/tenant/search',
-            controller:'tenantController',
-            resolve: {
-                loadMyFile:function($ocLazyLoad) {
-                    return $ocLazyLoad.load({
-                            name:'sbAdminApp',
-                            files:['scripts/controllers/tenantController.js']
-                        })
-                }
-            }
-        })
-        //租户管理模块-添加
-        .state('dashboard.create-tenant',{
-            templateUrl:'views/tenant/create-tenant.html',
-            url:'/tenant/add',
-            controller:'tenantController',
-            resolve: {
-                loadMyFile:function($ocLazyLoad) {
-                     return $ocLazyLoad.load({
-                             name:'sbAdminApp',
-                             files:['scripts/controllers/tenantController.js']
-                })
-            }
-        }
-        })
-        //租户管理模块-修改
-        .state('dashboard.modify-tenant',{
-            templateUrl:'views/tenant/modify-tenant.html',
-            url:'/tenant/modify',
-            controller:'tenantController',
-            resolve: {
-                loadMyFile:function($ocLazyLoad) {
-                    return $ocLazyLoad.load({
-                        name:'sbAdminApp',
-                        files:['scripts/controllers/tenantController.js']
-                    })
-                }
-            }
-        })
-
-        //商户管理模块-查询
-        .state('dashboard.search-merchant',{
-            templateUrl:'views/merchant/search-merchant.html',
-            url:'/merchant/search',
-            controller:'tenantController',
-            resolve: {
-                loadMyFile:function($ocLazyLoad) {
-                    return $ocLazyLoad.load({
-                        name:'sbAdminApp',
-                        files:['scripts/controllers/tenantController.js']
-                    })
-                }
-            }
-        })
-        //商户管理模块-修改
-        .state('dashboard.modify-merchant',{
-            templateUrl:'views/merchant/modify-merchant.html',
-            url:'/merchant/modify',
-            controller:'tenantController',
-            resolve: {
-                loadMyFile:function($ocLazyLoad) {
-                    return $ocLazyLoad.load({
-                        name:'sbAdminApp',
-                        files:['scripts/controllers/tenantController.js']
-                    })
-                }
-            }
-        })
-        //商户管理模块-新建
-        .state('dashboard.create-merchant',{
-            templateUrl:'views/merchant/create-merchant.html',
-            url:'/merchant/create',
-            controller:'tenantController',
-            resolve: {
-                loadMyFile:function($ocLazyLoad) {
-                    return $ocLazyLoad.load({
-                        name:'sbAdminApp',
-                        files:['scripts/controllers/tenantController.js']
-                    })
-                }
-            }
-        })
-
         //平台交易报表-查询
         .state('dashboard.search-tradeStatistics',{
             templateUrl:'views/tradeStatistics/search-TradeStatistics.html',
@@ -283,44 +199,49 @@ angular
                 }
             }
         })
-        .state('dashboard.create-user',{
-            templateUrl:'views/user/create-user.html',
-            url:'/user/add',
-            controller:'tenantController',
-            resolve: {
-                loadMyFile:function($ocLazyLoad) {
-                    return $ocLazyLoad.load({
-                        name:'sbAdminApp',
-                        files:['scripts/controllers/tenantController.js']
-                    })
-                }
-            }
-        })
-        .state('dashboard.modify-user',{
-            templateUrl:'views/user/modify-user.html',
-            url:'/user/modify',
-            controller:'tenantController',
-            resolve: {
-                loadMyFile:function($ocLazyLoad) {
-                    return $ocLazyLoad.load({
-                        name:'sbAdminApp',
-                        files:['scripts/controllers/tenantController.js']
-                    })
-                }
-            }
-        })
+        //.state('dashboard.create-user',{
+        //    templateUrl:'views/user/create-user.html',
+        //    url:'/user/add'
+            //,
+            //controller:'tenantController'
+            //,
+            //resolve: {
+            //    loadMyFile:function($ocLazyLoad) {
+            //        return $ocLazyLoad.load({
+            //            name:'sbAdminApp',
+            //            files:['scripts/controllers/tenantController.js']
+            //        })
+            //    }
+            //}
+        //})
+        //.state('dashboard.modify-user',{
+        //    templateUrl:'views/user/modify-user.html',
+        //    url:'/user/modify'
+            //,
+            //controller:'tenantController'
+            //,
+            //resolve: {
+            //    loadMyFile:function($ocLazyLoad) {
+            //        return $ocLazyLoad.load({
+            //            name:'sbAdminApp',
+            //            files:['scripts/controllers/tenantController.js']
+            //        })
+            //    }
+            //}
+        //})
         .state('dashboard.role-privilege',{
             templateUrl:'views/privilege/role-privilege.html',
             url:'/role-privilege',
-            controller:'privilegeController',
-            resolve: {
-                loadMyFile:function($ocLazyLoad) {
-                    return $ocLazyLoad.load({
-                        name:'sbAdminApp',
-                        files:['scripts/controllers/privilegeController.js']
-                    })
-                }
-            }
+            controller:'privilegeController'
+            //,
+            //resolve: {
+            //    loadMyFile:function($ocLazyLoad) {
+            //        return $ocLazyLoad.load({
+            //            name:'sbAdminApp',
+            //            files:['scripts/controllers/privilegeController.js']
+            //        })
+            //    }
+            //}
         })
         .state('dashboard.create-role',{
             templateUrl:'views/privilege/create-role.html',
@@ -349,44 +270,6 @@ angular
                 }
             }
         })
-        .state('dashboard.service-protocol',{
-            templateUrl:'views/protocol/service-protocol.html',
-            url:'/protocol/search',
-            controller:'protocolController',
-            resolve: {
-                loadMyFile:function($ocLazyLoad) {
-                    return $ocLazyLoad.load({
-                        name:'sbAdminApp',
-                        files:['scripts/controllers/protocolController.js']
-                    })
-                }
-            }
-        })
-       .state('dashboard.panels-wells',{
-          templateUrl:'views/ui-elements/panels-wells.html',
-          url:'/panels-wells'
-      })
-      .state('dashboard.buttons',{
-        templateUrl:'views/ui-elements/buttons.html',
-        url:'/buttons'
-    })
-      .state('dashboard.notifications',{
-        templateUrl:'views/ui-elements/notifications.html',
-        url:'/notifications'
-    })
-      .state('dashboard.typography',{
-       templateUrl:'views/ui-elements/typography.html',
-       url:'/typography'
-   })
-      .state('dashboard.icons',{
-       templateUrl:'views/ui-elements/icons.html',
-       url:'/icons'
-   })
-      .state('dashboard.grid',{
-       templateUrl:'views/ui-elements/grid.html',
-       url:'/grid'
-   })
-
 
         //用户管理
         .state('dashboard.userManger',{

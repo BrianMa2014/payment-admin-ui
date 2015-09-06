@@ -6,36 +6,42 @@
     </div>
    <!-- /.col-lg-12 -->
 
-<div class="form" ng-submit="modifyTenant(tenant)" ng-controller="tenantController">
+<div class="form" ng-submit="modifyMerchant(merchant)" ng-controller="merchantController">
 <form class="form-horizontal">
+    <div class="form-group">
+        <label for="merchantCode" class="col-sm-2 control-label">商户号</label>
+        <div class="col-sm-6">
+            <input type="hidden" ng-model="merchant.tenantCode">
+            <input type="text" class="form-control" id="merchantCode" placeholder="商户号" readonly ng-model="merchant.code">
+        </div>
+    </div>
    <div class="form-group">
-      <label for="tenantName" class="col-sm-2 control-label">商户名称</label>
+      <label for="merchantName" class="col-sm-2 control-label">商户名称</label>
       <div class="col-sm-6">
-         <input type="text" class="form-control" id="tenantName" placeholder="商户名称" ng-model="tenant.tenantName">
-      </div>
-   </div>
-   <div class="form-group">
-      <label for="inputPassword3" class="col-sm-2 control-label">签约时间</label>
-      <div class="col-sm-6">
-         <input type="text" class="form-control" id="signingDate" placeholder="签约时间" ng-model="tenant.signingDate">{{test}}
+         <input type="text" class="form-control" id="merchantName" placeholder="商户名称" ng-model="merchant.name">
       </div>
    </div>
     <div class="form-group">
-        <label for="inputPassword3" class="col-sm-2 control-label">联系人</label>
+        <label for="contact" class="col-sm-2 control-label">联系人</label>
         <div class="col-sm-6">
-            <input type="password" class="form-control" id="contact" placeholder="联系人" ng-model="tenant.contact">
+            <input type="text" class="form-control" id="contact" placeholder="联系人" ng-model="merchant.contact">
         </div>
     </div>
     <div class="form-group">
-        <label for="inputPassword3" class="col-sm-2 control-label">商户地址</label>
+        <label for="phone" class="col-sm-2 control-label">电话</label>
         <div class="col-sm-6">
-            <input type="password" class="form-control" id="address" placeholder="商户地址" ng-model="tenant.address">
+            <input type="text" class="form-control" id="phone" placeholder="联系人" ng-model="merchant.phone">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="address" class="col-sm-2 control-label">商户地址</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" id="address" placeholder="商户地址" ng-model="merchant.address">
         </div>
     </div>
    <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">
-         <button type="submit" class="btn btn-primary"  ui-sref="dashboard.search-tenant">修改</button>
-          {{tenantId}}
+         <button type="submit" class="btn btn-primary" >修改</button>
       </div>
    </div>
 </form>

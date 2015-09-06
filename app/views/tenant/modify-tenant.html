@@ -6,36 +6,70 @@
     </div>
    <!-- /.col-lg-12 -->
 
-<div class="form" ng-submit="modifyTenant(tenant)" ng-controller="tenantController">
+        <div class="form" ng-submit="modifyTenant(tenant)" ng-controller ="tenantController">
 <form class="form-horizontal">
+    <div class="form-group">
+        <label for="tenantNo" class="col-sm-2 control-label" >租户号</label>
+        <div class="col-sm-6">
+            <input type="hidden" ng-model="tenant.tenantId">
+            <input type="text" class="form-control" id="tenantNo" placeholder="租户号" ng-model="tenant.tenantNo" readonly>
+        </div>
+    </div>
    <div class="form-group">
       <label for="tenantName" class="col-sm-2 control-label">租户名称</label>
       <div class="col-sm-6">
          <input type="text" class="form-control" id="tenantName" placeholder="租户名称" ng-model="tenant.tenantName">
       </div>
    </div>
-   <div class="form-group">
-      <label for="inputPassword3" class="col-sm-2 control-label">签约时间</label>
-      <div class="col-sm-6">
-         <input type="text" class="form-control" id="signingDate" placeholder="签约时间" ng-model="tenant.signingDate">{{test}}
-      </div>
-   </div>
+
+    <!--<div class="form-group">-->
+        <!--<label for="signingDate"  class="col-sm-2 control-label">签约时间</label>-->
+        <!--<div class="date form_date col-sm-6 input-group " data-date="" data-date-format="yyyy-mm-dd "-->
+             <!--data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">-->
+            <!--<input  type="text" id="signingDate" class="form-control"  placeholder="签约时间" ng-model="tenant.signingDate" date-format />-->
+            <!--<span class="input-group-addon"><span class="glyphicon glyphicon-calendar">-->
+            <!--</span></span>-->
+        <!--</div>-->
+        <!--<script>-->
+
+            <!--$('.form_date').datetimepicker({-->
+                <!--language: 'zh-CN',-->
+                <!--weekStart: 1,-->
+                <!--todayBtn: 1,-->
+                <!--autoclose: 1,-->
+                <!--todayHighlight: 1,-->
+                <!--startView: 2,-->
+                <!--minView: 2,-->
+                <!--forceParse: 0-->
+            <!--});-->
+
+        <!--</script>-->
+
+    <!--</div>-->
+
+
+
     <div class="form-group">
-        <label for="inputPassword3" class="col-sm-2 control-label">联系人</label>
+        <label for="contact" class="col-sm-2 control-label">联系人</label>
         <div class="col-sm-6">
-            <input type="password" class="form-control" id="contact" placeholder="联系人" ng-model="tenant.contact">
+            <input type="text" class="form-control" id="contact" placeholder="联系人" ng-model="tenant.contact">
         </div>
     </div>
     <div class="form-group">
-        <label for="inputPassword3" class="col-sm-2 control-label">租户地址</label>
+        <label for="phone" class="col-sm-2 control-label">电话</label>
         <div class="col-sm-6">
-            <input type="password" class="form-control" id="address" placeholder="租户地址" ng-model="tenant.address">
+            <input type="text" class="form-control" id="phone" placeholder="电话" ng-model="tenant.phone">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="address" class="col-sm-2 control-label">租户地址</label>
+        <div class="col-sm-6">
+            <input type="text" class="form-control" id="address" placeholder="租户地址" ng-model="tenant.address">
         </div>
     </div>
    <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">
-         <button type="submit" class="btn btn-primary"  ui-sref="dashboard.search-tenant">修改</button>
-          {{tenantId}}
+         <button type="submit" class="btn btn-primary">修改</button>
       </div>
    </div>
 </form>

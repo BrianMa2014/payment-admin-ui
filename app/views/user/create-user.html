@@ -6,20 +6,32 @@
     </div>
    <!-- /.col-lg-12 -->
 
-<div class="form" ng-submit="createTenant(tenant)" ng-controller="tenantController">
+<div class="form" ng-submit="createUser(user)" ng-controller="userController">
 <form class="form-horizontal">
    <div class="form-group">
-      <label for="tenantName" class="col-sm-2 control-label">用户名</label>
+      <label for="username" class="col-sm-2 control-label">用户名</label>
       <div class="col-sm-6">
-         <input type="text" class="form-control" id="tenantName" placeholder="用户名" ng-model="tenant.tenantName">
+         <input type="text" class="form-control" id="username" placeholder="用户名" ng-model="user.userName">
       </div>
    </div>
    <div class="form-group">
-      <label for="inputPassword3" class="col-sm-2 control-label">密码</label>
+      <label for="password" class="col-sm-2 control-label">密码</label>
       <div class="col-sm-6">
-         <input type="text" class="form-control" id="signingDate" placeholder="密码" ng-model="tenant.signingDate">
+         <input type="text" class="form-control" id="password" placeholder="密码" ng-model="user.password">
       </div>
    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">角色</label>
+        <div class="col-sm-6">
+             <!--ng-model="query.tenantId" ng-options="tenant.tenantId as tenant.tenantName for tenant in tenants"  ng-init="query.tenantId = 0"-->
+            <select class="form-control" >
+                <option value="">全部</option>
+                <option value="">Admin</option>
+                <option value="">Tenant</option>
+                <option value="">Merchant</option>
+            </select>
+        </div>
+    </div>
     <div class="form-group">
         <label class="col-sm-2 control-label">租户</label>
         <div class="col-sm-6">
@@ -28,17 +40,9 @@
         </select>
         </div>
     </div>
-    <div class="form-group">
-        <label class="col-sm-2 control-label">角色</label>
-        <div class="col-sm-6">
-            <select class="form-control"  ng-model="query.tenantId" ng-options="tenant.tenantId as tenant.tenantName for tenant in tenants"  ng-init="query.tenantId = 0">
-                <option value="">全部</option>
-            </select>
-        </div>
-    </div>
    <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">
-         <button type="submit" class="btn btn-primary"  ui-sref="dashboard.userlist">创建</button>
+         <button type="submit" class="btn btn-primary" >创建</button>
       </div>
    </div>
 </form>

@@ -1,6 +1,7 @@
 [
   {
     "tenantId":"1001",
+    "tenantNo":"0000000",
     "tenantName":"杭州武林银泰",
     "signingDate":"2015-01-01",
     "contact":"张三",
@@ -8,6 +9,7 @@
   },
   {
     "tenantId":"1002",
+    "tenantNo":"0000001",
     "tenantName":"银泰网",
     "signingDate":"2015-01-01",
     "contact":"王霞",
@@ -15,6 +17,7 @@
   },
   {
     "tenantId":"1003",
+    "tenantNo":"0000002",
     "tenantName":"商户1",
     "signingDate":"2014-01-01",
     "contact":"王五",
@@ -22,6 +25,7 @@
   },
   {
     "tenantId":"1004",
+    "tenantNo":"0000003",
     "tenantName":"商户2",
     "signingDate":"2015-06-01",
     "contact":"张三",

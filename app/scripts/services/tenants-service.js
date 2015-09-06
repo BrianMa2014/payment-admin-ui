@@ -21,7 +21,7 @@ angular.module('sbAdminApp.tenants.service', [
             //               "address":"1111xxx",
             //               "signingDate":"2015-09-01",
             //               "tenantName":"mexxx",
-            //               "contact":"ÍõÏ¼111"
+            //               "contact":"ï¿½ï¿½Ï¼111"
 
             //             };
             var tenant ={};
@@ -38,14 +38,14 @@ angular.module('sbAdminApp.tenants.service', [
                 alert("1"+tenant.address);
                 // alert(tenant.tenantName);
                 // if(Boolean(data) == true){
-                //    alert("³É¹¦");
+                //    alert("ï¿½É¹ï¿½");
                 //    $state.go("dashboard.search-tenant");
                 // }
                 // else{
-                //    alert("»ñÈ¡ÉÌ»§Ê§°Ü");
+                //    alert("ï¿½ï¿½È¡ï¿½Ì»ï¿½Ê§ï¿½ï¿½");
                 // }
             }).error(function(status) {
-                alert("»ñÈ¡ÉÌ»§Ê§°Ü"+status);
+                alert("ï¿½ï¿½È¡ï¿½Ì»ï¿½Ê§ï¿½ï¿½"+status);
             });
 
             return tenant;

@@ -6,12 +6,12 @@
 
             <!-- /.panel-heading -->
             <div class="panel-heading" style="margin-bottom:10px;margin-top:15px">
-                银泰支付平台交易统计查询报表
+                交易报表
             </div>
             <div class="form-inline" ng-controller="tradeStatisticsController">
                 <div class="form-group" style="margin-left:10px">
-                    <label for="tenantId">商户ID</label>
-                    <input type="text" class="form-control" id="tenantId" placeholder="商户ID" ng-model="query.tenantId">
+                    <label for="tenantId">商户号</label>
+                    <input type="text" class="form-control" id="tenantId" placeholder="商户号" ng-model="query.tenantId">
                 </div>
                 <div class="form-group" style="margin-left:10px">
                     <label for="tradeID">交易单号</label>
@@ -25,7 +25,15 @@
                     <div class="input-group date form_date " data-date="" data-date-format="yyyy-mm-dd "
                          data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
 
-                        <input name=""  size='10' type="text" class="form-control" placeholder="起始日期" ng-model="query.tradeTime"/>
+                        <input name=""  size='10' type="text" class="form-control" placeholder="起始日期" ng-model="query.startTime"/>
+            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar">
+            </span></span>
+                    </div>
+                    <span> - </span>
+                    <div class="input-group date form_date " data-date="" data-date-format="yyyy-mm-dd "
+                         data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+
+                        <input name=""  size='10' type="text" class="form-control" placeholder="结束日期" ng-model="query.endTime"/>
             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar">
             </span></span>
                     </div>
@@ -59,7 +67,7 @@
                             <thead>
                             <tr>
 
-                                <th style="min-width:80px;">商户ID</th>
+                                <th style="min-width:80px;">商户号</th>
                                 <th style="min-width:80px;">商户名称</th>
                                 <th style="min-width:80px;">平台业务流水号</th>
                                 <th style="min-width:80px;">支付交易流水号</th>

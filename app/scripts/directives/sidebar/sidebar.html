@@ -8,14 +8,14 @@
                     <span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level" collapse="collapseVar!=1">
                     <li ui-sref-active="active">
-                        <a ui-sref="dashboard.search-tenant">租户管理</a>
+                        <a ui-sref="dashboard.tenant-list({currentPage:0,pageSize:5})">租户管理</a>
                     </li>
                     <li ui-sref-active="active">
                         <a ui-sref="dashboard.search-tradeStatistics">交易管理</a>
                     </li>
-                    <li ui-sref-active="active">
-                        <a ui-sref="dashboard.service-protocol">服务协议管理</a>
-                    </li>
+                    <!--<li ui-sref-active="active">-->
+                        <!--<a ui-sref="dashboard.service-protocol">服务协议管理</a>-->
+                    <!--</li>-->
                 </ul>
                 <!-- /.nav-second-level -->
             </li>
@@ -24,15 +24,15 @@
                 <a href="" ng-click="check(2)"><i class="fa fa-wrench fa-fw"></i> 商家系统
                     <span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level" collapse="collapseVar!=2">
-                    <li ui-sref-active="active">
-                        <a ui-sref="dashboard.role-privilegexxx">账户管理</a>
-                    </li>
-                    <li ui-sref-active="active">
-                        <a ui-sref="dashboard.xxxx">签约产品/服务协议管理</a>
-                    </li>
-                    <li ui-sref-active="active">
-                        <a ui-sref="dashboard.xxxx">对账差异汇总</a>
-                    </li>
+                    <!--<li ui-sref-active="active">-->
+                        <!--<a ui-sref="dashboard.role-privilegexxx">账户管理</a>-->
+                    <!--</li>-->
+                    <!--<li ui-sref-active="active">-->
+                        <!--<a ui-sref="dashboard.service-protocol">签约产品/服务协议管理</a>-->
+                    <!--</li>-->
+                    <!--<li ui-sref-active="active">-->
+                        <!--<a ui-sref="dashboard.xxxx">对账差异汇总</a>-->
+                    <!--</li>-->
                     <li ui-sref-active="active">
                         <a ui-sref="dashboard.xxxx">账务明细</a>
                     </li>
@@ -41,11 +41,11 @@
             </li>
 
             <li ui-sref-active="active">
-                <a ui-sref="dashboard.userlist"><i class="fa fa-dashboard fa-fw"></i> 用户管理</a>
+                <a ui-sref="dashboard.user-list"><i class="fa fa-dashboard fa-fw"></i> 用户管理</a>
             </li>
 
             <li ui-sref-active="active">
-                <a ui-sref="dashboard.rolelist"><i class="fa fa-dashboard fa-fw"></i> 权限管理</a>
+                <a ui-sref="dashboard.rolelist"><i class="fa fa-dashboard fa-fw"></i> 角色管理</a>
             </li>
 
             <!--<li ui-sref-active="active">-->

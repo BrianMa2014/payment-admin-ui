@@ -23,7 +23,7 @@
     <div class="form-group">
         <label class="col-sm-2 control-label">租户</label>
         <div class="col-sm-6">
-        <select class="form-control"  ng-model="query.tenantId" ng-options="tenant.tenantId as tenant.tenantName for tenant in tenants"  ng-init="query.tenantId = 0">
+        <select class="form-control"  ng-model="query.tenantId1" ng-options="tenant.tenantId as tenant.tenantName for tenant in tenants"  ng-init="query.tenantId = 0">
             <option value="">全部</option>
         </select>
         </div>
@@ -31,7 +31,7 @@
     <div class="form-group">
         <label class="col-sm-2 control-label">角色</label>
         <div class="col-sm-6">
-            <select class="form-control"  ng-model="query.tenantId" ng-options="tenant.tenantId as tenant.tenantName for tenant in tenants"  ng-init="query.tenantId = 0">
+            <select class="form-control" multiple="multiple"  ng-model="query.tenantId" ng-options="tenant.tenantId as tenant.tenantName for tenant in tenants"  ng-init="query.tenantId = 0">
                 <option value="">全部</option>
             </select>
         </div>
